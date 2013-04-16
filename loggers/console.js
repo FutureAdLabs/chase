@@ -7,3 +7,5 @@ var Console = function(){
 		Log: _log
 	};
 }();
+
+module.exports = Console;
