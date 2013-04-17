@@ -2,8 +2,8 @@ var redis = require('redis');
 
 var Redis = function(){
 	var _client;
-	var _port = '';
-	var _host = '';
+	var _port = 6379;
+	var _host = '127.0.0.1';
 	var _liveForDays = 1;
 	var _key = '';
 
@@ -43,7 +43,7 @@ var Redis = function(){
 	};
 
 	var _createClient = function() {
-		if(!_port || !_host || _port.length <= 0 || _host.length <= 0) return;
+		if(!_port || !_host || _host.length <= 0) return;
 
 		_client = redis.createClient(_port, _host);
 		_client.on('error', _handleError);
