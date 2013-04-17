@@ -23,7 +23,7 @@ var Redis = function(){
 
 		if(!_client) return;
 
-		_client.rpush(_key, message)
+		_client.sadd(_key, message)
 		_setExpiryOfKey(_key);
 	};
 
