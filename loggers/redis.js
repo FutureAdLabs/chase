@@ -23,7 +23,8 @@ var Redis = function(){
 
 		if(!_client) return;
 
-		_client.sadd(_key, message)
+		var timestamp = new Date().getTime().toString();
+		_client.zadd(_key, timestamp, message)
 		_setExpiryOfKey(_key);
 	};
 

@@ -31,9 +31,9 @@ var Chase = function(){
 
 		if(level >= _logLevel) {
 			var info = '';
-			if(_showHost) info = info + os.hostname() + '\t';
+			if(_showHost) info = info + os.hostname() + ' - ';
 			var timestamp = new Date().toUTCString();
-			info = info + timestamp + '\t';
+			info = info + timestamp + ' - ';
 
 			message = info + ' - ' + message;
 
