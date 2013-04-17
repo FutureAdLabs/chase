@@ -21,14 +21,16 @@ var Redis = function(){
 
 		if(!_client) _createClient();
 
+		if(!_client) return;
+
 		_client.rpush(_key, message)
 		_setExpiryOfKey(_key);
 	};
 
 	var _setExpiryOfKey = function(key) {
-		var client = _redis.GetClient();
+		if(!_client) return;
 
-		client.ttl(key, function(err, data) {
+		_client.ttl(key, function(err, data) {
 			if(err || data < 0) {
 				var date = new Date();
 				var minutes = date.getMinutes();
@@ -37,7 +39,7 @@ var Redis = function(){
 
 				var expiry = (60 * 60 * 24 * _liveForDays) - (seconds + (minutes * 60) + (hours * 60 * 60));
 
-				client.expire(key, expiry);
+				_client.expire(key, expiry);
 			}
 		});
 	};
